@@ -1,5 +1,5 @@
 
-const chatList = [
+const talks = [
     { 
         "id": 0,
         "to_user": {
@@ -13,18 +13,18 @@ const chatList = [
         "messages":[
             {
                 "username":"임블리",
-                "date":"2019 Feb 12,Tue,am 11:20",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"Hey, How's it going this week?"
             },
             {
                 "username":"yesdoing",
-                "date":"2016-11-16 22:32:17:48",
-                "content":"졸려졸려"
+                "date":"2019 Feb 12,Tue,11:20",
+                "content": "Haha that's was so funny Story hahahahahahahahahahahahahaha"
             },
             {
                 "username":"임블리",
-                "date":"2016-11-16 22:32:19:48",
-                "content":"가나다라마바사"
+                "date":"2019 Feb 12,Tue,11:20",
+                "content":"Hey, how it is going?"
             },
     ]},
     {
@@ -40,18 +40,18 @@ const chatList = [
         "messages":[
             {
                 "username":"임블리",
-                "date":"2019 Feb 12,Tue,am 11:20",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"Hey, How's it going this week?"
             },
             {
                 "username":"yesdoing",
-                "date":"2016-11-16 22:32:17:48",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"졸려졸려"
             },
             {
                 "username":"임블리",
-                "date":"2016-11-16 22:32:19:48",
-                "content":"가나다라마바사"
+                "date":"2019 Feb 08,Fri,11:20",
+                "content": "Haha that's was so funny Story hahahahahahahahahahahahahaha"
             },
     ]},
     { 
@@ -67,18 +67,18 @@ const chatList = [
         "messages":[
             {
                 "username":"임블리",
-                "date":"2019 Feb 12,Tue,am 11:20",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"Hey, How's it going this week?"
             },
             {
                 "username":"yesdoing",
-                "date":"2016-11-16 22:32:17:48",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"졸려졸려"
             },
             {
                 "username":"임블리",
-                "date":"2016-11-16 22:32:19:48",
-                "content":"가나다라마바사"
+                "date":"2019 Feb 12,Tue,11:20",
+                "content":"Hey, How's it going this week?"
             }
     ]},
     { 
@@ -94,18 +94,18 @@ const chatList = [
         "messages":[
             {
                 "username":"임블리",
-                "date":"2019 Feb 12,Tue,am 11:20",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"Hey, How's it going this week?"
             },
             {
                 "username":"yesdoing",
-                "date":"2016-11-16 22:32:17:48",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"졸려졸려"
             },
             {
                 "username":"임블리",
-                "date":"2016-11-16 22:32:19:48",
-                "content":"가나다라마바사"
+                "date":"2019 Feb 12,Tue,11:20",
+                "content": "Haha that's was so funny Story hahahahahahahahahahahahahaha"
             }        
     ]},
     { 
@@ -121,18 +121,18 @@ const chatList = [
         "messages":[
             {
                 "username":"임블리",
-                "date":"2019 Feb 12,Tue,am 11:20",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"Hey, How's it going this week?"
             },
             {
                 "username":"yesdoing",
-                "date":"2016-11-16 22:32:17:48",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"졸려졸려"
             },
             {
                 "username":"임블리",
-                "date":"2016-11-16 22:32:19:48",
-                "content":"가나다라마바사"
+                "date":"2019 Feb 12,Tue,11:20",
+                "content": "Haha that's was so funny Story hahahahahahahahahahahahahaha"
             }        
     ]},
     { 
@@ -148,18 +148,18 @@ const chatList = [
         "messages":[
             {
                 "username":"임블리",
-                "date":"2019 Feb 12,Tue,am 11:20",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"Hey, How's it going this week?"
             },
             {
                 "username":"yesdoing",
-                "date":"2016-11-16 22:32:17:48",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"졸려졸려"
             },
             {
                 "username":"임블리",
-                "date":"2016-11-16 22:32:19:48",
-                "content":"가나다라마바사"
+                "date":"2019 Feb 12,Tue,11:20",
+                "content": "Haha that's was so funny Story hahahahahahahahahahahahahaha"
             }        
     ]},
     { 
@@ -175,7 +175,7 @@ const chatList = [
         "messages":[
             {
                 "username":"임블리",
-                "date":"2019 Feb 12,Tue,am 11:20",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"Hey, How's it going this week?"
             },
             {
@@ -185,8 +185,8 @@ const chatList = [
             },
             {
                 "username":"임블리",
-                "date":"2016-11-16 22:32:19:48",
-                "content":"가나다라마바사"
+                "date":"2019 Feb 12,Tue,11:20",
+                "content": "Haha that's was so funny Story hahahahahahahahahahahahahaha"
             }        
     ]},
     { 
@@ -202,83 +202,83 @@ const chatList = [
         "messages":[
             {
                 "username":"임블리",
-                "date":"2019 Feb 12,Tue,am 11:20",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"Hey, How's it going this week?"
             },
             {
                 "username":"yesdoing",
-                "date":"2016-11-16 22:32:17:48",
+                "date":"2019 Feb 12,Tue,11:20",
                 "content":"졸려졸려"
             },
             {
                 "username":"임블리",
-                "date":"2016-11-16 22:32:19:48",
-                "content":"가나다라마바사"
+                "date":"2019 Feb 12,Tue,11:20",
+                "content": "Haha that's was so funny Story hahahahahahahahahahahahahaha"
             }        
     ]},
     ];
 
-const talklist = [
+const chatList = [
     {
         id: 0,
         username: "임블리",
         user_profile_image: "https://cf.shop.s.zigzag.kr/images/imvely.jpg",
-        recent_message: chatList[0].messages[chatList[0].messages.length-1]
+        recent_message: talks[0].messages[talks[0].messages.length-1]
     },
     {
         id: 1,
         username: "미아마스빈",
         user_profile_image: "https://cf.shop.s.zigzag.kr/images/miamasvin.jpg",
-        recent_message: chatList[1].messages[chatList[1].messages.length-1]
+        recent_message: talks[1].messages[talks[1].messages.length-1]
     },
     {
         id: 2,
         username: "모코블링",
         user_profile_image: "https://cf.shop.s.zigzag.kr/images/mocobling.jpg",
-        recent_message: chatList[2].messages[chatList[2].messages.length-1]
+        recent_message: talks[2].messages[talks[2].messages.length-1]
     },
     {
         id: 3,
         username: "데일리먼데이",
         user_profile_image: "https://cf.shop.s.zigzag.kr/images/dailymonday.jpg",
-        recent_message: chatList[3].messages[chatList[3].messages.length-1]
+        recent_message: talks[3].messages[talks[3].messages.length-1]
     },
     {
         id: 4,
         username: "파티수",
         user_profile_image: "https://cf.shop.s.zigzag.kr/images/partysu.jpg",
-        recent_message: chatList[4].messages[chatList[4].messages.length-1]
+        recent_message: talks[4].messages[talks[4].messages.length-1]
     },
     {
         id: 5,
         username: "하나언니",
         user_profile_image: "https://cf.shop.s.zigzag.kr/images/hanaunni.jpg",
-        recent_message: chatList[5].messages[chatList[5].messages.length-1]
+        recent_message: talks[5].messages[talks[5].messages.length-1]
     },
     {
         id: 6,
         username: "육육걸즈",
         user_profile_image: "https://cf.shop.s.zigzag.kr/images/66girls.jpg",
-        recent_message: chatList[6].messages[chatList[6].messages.length-1]
+        recent_message: talks[6].messages[talks[6].messages.length-1]
     },
     {
         id: 7,
         username: "핫핑",
         user_profile_image: "https://cf.shop.s.zigzag.kr/images/hotping.jpg",
-        recent_message: chatList[7].messages[chatList[7].messages.length-1]
+        recent_message: talks[7].messages[talks[7].messages.length-1]
     },
 ]
 
 export const list = () => ({
-    list: talklist
+    list: chatList
 });
 
 
 
 export const chat = (index) => {
-    return chatList[index];
+    return talks[index];
 };
 
 export const talk = (index, message) => {
-    chatList[index].messages.push(message);
+    talks[index].messages.push(message);
 };

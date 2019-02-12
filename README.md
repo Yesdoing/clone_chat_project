@@ -14,4 +14,4 @@ ZIGZAG 채팅방 구현 과제
 
 ## Moment 
 
-- YYYY MMM DD,ddd,a hh:mm
+- YYYY MMM DD,ddd, hh:mm
