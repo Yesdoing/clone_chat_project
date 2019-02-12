@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
+import { useUI } from "../Context/UI";
 
 const Header = styled.header`
   position: fixed;
@@ -8,6 +9,7 @@ const Header = styled.header`
   top: 0;
   width: 100%;
   height: 85px;
+  z-index: 5;
 `;
 
 const Inner = styled.div`
@@ -25,6 +27,7 @@ const Button = styled.button`
   left: 25px;
   color: #9e9fa6;
   font-size: 20px;
+  cursor: pointer;
 `;
 
 const Title = styled.h3`
@@ -33,14 +36,18 @@ const Title = styled.h3`
   font-weight: 600;
 `;
 
-export default withRouter(({ location: { pathname }, history: { goBack } }) => (
-  <Header>
-    <Inner>
-      {pathname.includes("/chat") && <Button onClick={goBack}>뒤로</Button>}
-      <Title>
-        {pathname.includes("/chat") && "임블리"}
-        {pathname === "/" && "C H A T"}
-      </Title>
-    </Inner>
-  </Header>
-));
+export default withRouter(
+  useUI(({ location: { pathname }, history: { push }, chatHeaderUsername }) => (
+    <Header>
+      <Inner>
+        {pathname.includes("/chat") && (
+          <Button onClick={() => push("/")}>뒤로</Button>
+        )}
+        <Title>
+          {pathname.includes("/chat") && chatHeaderUsername}
+          {pathname === "/" && "C H A T"}
+        </Title>
+      </Inner>
+    </Header>
+  ))
+);
