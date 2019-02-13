@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
+import DateDivider from "../../Components/DateDivider";
 
 const Container = styled.div``;
 
@@ -63,15 +64,24 @@ const ChatPresenter = ({
     <Loader />
   ) : (
     <Container>
-      <MessageContainer ref={(ref) => setMessageContainerRef(ref) }>
-        {messages.map((message, index) => (
-          <Message
-            key={index}
-            message={message.content}
-            profileImageUrl={message.username === loggedInUser ? toUser.user_profile_image : fromUser.user_profile_image}
-            isLogginedUser={message.username === loggedInUser}
-            messageTime={message.date}
-          />))}
+      <MessageContainer ref={ref => setMessageContainerRef(ref)}>
+        {messages.map((message, index) =>
+          typeof message === "string" ? (
+            <DateDivider date={message} key={index} />
+          ) : (
+            <Message
+              key={index}
+              message={message.content}
+              profileImageUrl={
+                message.username === loggedInUser
+                  ? toUser.user_profile_image
+                  : fromUser.user_profile_image
+              }
+              isLogginedUser={message.username === loggedInUser}
+              messageTime={message.date}
+            />
+          )
+        )}
       </MessageContainer>
       <Form onSubmit={e => e.preventDefault()}>
         <Input

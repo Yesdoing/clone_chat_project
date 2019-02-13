@@ -17,21 +17,19 @@ export default useUI(
         error: null,
         loading: true
       };
-  
+
       this.messageContainer = null;
-      
+
       this.setMessageContainerRef = element => {
         this.messageContainer = element;
-      }
+      };
 
       this.scrollToBottom = () => {
-        if(this.messageContainer) {
+        if (this.messageContainer) {
           const { scrollHeight } = this.messageContainer;
-          this.messageContainer.scrollTop = scrollHeight;  
+          this.messageContainer.scrollTop = scrollHeight;
         }
-      }
-  
-
+      };
     }
 
     componentDidMount() {
@@ -41,7 +39,7 @@ export default useUI(
         },
         history: { push }
       } = this.props;
-
+      const { messageDividerOfDate } = this;
       const parsedId = parseInt(id);
 
       if (isNaN(parsedId)) {
@@ -50,8 +48,11 @@ export default useUI(
 
       try {
         const data = richWebApi.chat(parsedId);
+
+        let updatedMessages = messageDividerOfDate([...data.messages]);
+
         this.setState({
-          messages: data.messages,
+          messages: updatedMessages,
           to_user: data.to_user,
           from_user: data.from_user
         });
@@ -68,6 +69,10 @@ export default useUI(
       }
     }
 
+    setDateFormat = date =>
+      date
+        .split(",")
+        .reduce((acc, cur, index) => (index !== 2 ? `${acc} ${cur}` : acc));
 
     handleSubmit = event => {
       event.preventDefault();
@@ -89,13 +94,30 @@ export default useUI(
     sendMessage = async () => {
       const { message, messages } = this.state;
       let updateMessages = null;
+      const currentDate = moment().format("YYYY MMM DD,ddd,hh:mm");
       try {
         const messageObject = {
           username: "yesdoing",
-          date: moment().format("YYYY MMM DD,ddd,hh:mm"),
+          date: currentDate,
           content: message
         };
-        updateMessages = [...messages, messageObject];
+        let lastMessage = messages.pop();
+
+        if (
+          this.setDateFormat(currentDate) ===
+          this.setDateFormat(lastMessage.date)
+        ) {
+          updateMessages = [...messages, lastMessage, messageObject];
+        } else {
+          let dateDividerFormat = this.setDateFormat(currentDate);
+
+          updateMessages = [
+            ...messages,
+            lastMessage,
+            dateDividerFormat,
+            messageObject
+          ];
+        }
         richWebApi.talk(messageObject);
       } catch (error) {
         this.setState({
@@ -105,6 +127,22 @@ export default useUI(
         await this.setState({ messages: updateMessages, message: "" });
         this.scrollToBottom();
       }
+    };
+
+    messageDividerOfDate = messages => {
+      const modifyMessgae = [...messages];
+
+      let recentDate = this.setDateFormat(modifyMessgae[0].date);
+      let updatedMessages = [recentDate];
+      for (let message of modifyMessgae) {
+        let messageDate = this.setDateFormat(message.date);
+        if (recentDate !== messageDate) {
+          updatedMessages.push(messageDate);
+          recentDate = messageDate;
+        }
+        updatedMessages.push(message);
+      }
+      return updatedMessages;
     };
 
     render() {
