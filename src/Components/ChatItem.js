@@ -8,6 +8,10 @@ const Container = styled.div`
   height: 114px;
   display: flex;
   align-items: center;
+  transition: .1s background-color;
+  &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
 `;
 
 const Image = styled.div`
@@ -56,7 +60,8 @@ const RecentMessage = styled.span`
   color: #96959a;
 `;
 
-const Link = styled(ATag)``;
+const Link = styled(ATag)`
+`;
 
 const ChatItem = ({
   id,

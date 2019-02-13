@@ -38,7 +38,7 @@ const Input = styled.input`
 
 const Submit = styled.button`
   all: unset;
-  background-color: #7aa0fb;
+  background-color: ${props => props.message.length > 0 ? "#7aa0fb" : "#d1d1d4"};
   width: 73px;
   height: 40px;
   border-radius: 5px;
@@ -46,6 +46,7 @@ const Submit = styled.button`
   color: white;
   font-size: 16px;
   font-weight: 500;
+  transition: background-color .1s ease-in-out;
 `;
 
 const ChatPresenter = ({
@@ -89,7 +90,7 @@ const ChatPresenter = ({
           value={message}
           onChange={handleChangeInput}
         />
-        <Submit onClick={handleSubmit}>보내기</Submit>
+        <Submit onClick={handleSubmit} message={message} >보내기</Submit>
       </Form>
     </Container>
   );
