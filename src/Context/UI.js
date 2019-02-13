@@ -40,5 +40,4 @@ function useUI(WrappedComponent) {
   };
 }
 
-// 내보내줍니다.
 export { UIProvider, UIConsumer, useUI };

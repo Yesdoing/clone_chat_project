@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <UIProvider>
-        <Router {...this.state} handleFriend={this.handleFriend} />
+        <Router />
         <GlobalStyles />
       </UIProvider>
     );
