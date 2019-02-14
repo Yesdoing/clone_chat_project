@@ -24,7 +24,7 @@ export const richWebApi = {
         .utc(b.recent_message.date, "YYYY MMM DD,ddd,hh:mm:ss")
         .diff(moment.utc(a.recent_message.date, "YYYY MMM DD,ddd,hh:mm:ss"))
     );
-    console.log(response);
+
     return response;
   },
   chatDetail: index => chatDetail(index),
