@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
-import DateDivider from "../../Components/DateDivider";
-
-const Container = styled.div``;
+import DateDivider from "Components/DateDivider";
+import Error from "Components/Error";
 
 const MessageContainer = styled.div`
   width: 100%;
@@ -38,7 +37,10 @@ const Input = styled.input`
 
 const Submit = styled.button`
   all: unset;
-  background-color: ${props => props.message.length > 0 ? "#7aa0fb" : "#d1d1d4"};
+  ${props =>
+    props.message.length > 0
+      ? "background-color: #9087FB; background-image: linear-gradient(to bottom right, #9087FB,  #75A8FB );"
+      : "background-color: #d1d1d4;"}
   width: 73px;
   height: 40px;
   border-radius: 5px;
@@ -46,7 +48,7 @@ const Submit = styled.button`
   color: white;
   font-size: 16px;
   font-weight: 500;
-  transition: background-color .1s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
 `;
 
 const ChatPresenter = ({
@@ -60,29 +62,34 @@ const ChatPresenter = ({
   handleChangeInput,
   loggedInUser,
   setMessageContainerRef
-}) =>
-  loading ? (
+}) => {
+  const messageList = messages.map((message, index) => {
+    if (typeof message === "string") {
+      return <DateDivider date={message} key={index} />;
+    } else {
+      return (
+        <Message
+          key={index}
+          message={message.content}
+          profileImageUrl={
+            message.username === loggedInUser
+              ? toUser.user_profile_image
+              : fromUser.user_profile_image
+          }
+          isLogginedUser={message.username === loggedInUser}
+          messageTime={message.date.split(",")[2].substring(0, 5)}
+        />
+      );
+    }
+  });
+
+  return loading ? (
     <Loader />
   ) : (
-    <Container>
+    <>
       <MessageContainer ref={ref => setMessageContainerRef(ref)}>
-        {messages.map((message, index) =>
-          typeof message === "string" ? (
-            <DateDivider date={message} key={index} />
-          ) : (
-            <Message
-              key={index}
-              message={message.content}
-              profileImageUrl={
-                message.username === loggedInUser
-                  ? toUser.user_profile_image
-                  : fromUser.user_profile_image
-              }
-              isLogginedUser={message.username === loggedInUser}
-              messageTime={message.date}
-            />
-          )
-        )}
+        {messageList}
+        {error && <Error color="#e74c3c" text={error} />}
       </MessageContainer>
       <Form onSubmit={e => e.preventDefault()}>
         <Input
@@ -90,10 +97,13 @@ const ChatPresenter = ({
           value={message}
           onChange={handleChangeInput}
         />
-        <Submit onClick={handleSubmit} message={message} >보내기</Submit>
+        <Submit onClick={handleSubmit} message={message}>
+          보내기
+        </Submit>
       </Form>
-    </Container>
+    </>
   );
+};
 
 ChatPresenter.propTypes = {
   messages: PropTypes.array,

@@ -5,16 +5,16 @@ import moment from "moment";
 
 export default class extends React.Component {
     state = {
-        list: [],
+        chatList: [],
         error: null,
         loading: true
     }
 
     componentDidMount() {
         try{
-            const { list } = richWebApi.list();
+            const chatList = richWebApi.chatList();
             this.setState({
-                list
+                chatList
             });
         } catch(error) {
             this.setState({
@@ -27,16 +27,31 @@ export default class extends React.Component {
         }
     }
 
+    readMessage = (id) => {
+        const { chatList } = this.state;
+        const updatedList = chatList.map((item, index) => {
+            if (id === index) {
+                item.unread_number = 0;
+            }
+            return item;
+        });
+        this.setState({
+            chatList: updatedList
+        });
+        richWebApi.updateMessageAllRead(id);
+    }
+
     isToday = date => {
         const today = moment().format("YYYY MMM DD,ddd");
         if (date.includes(today)) {
-          return date.substring(date.length - 5, date.length);
+          return date.substring(date.length - 8, date.length-3);
         }
         return date.split(",")[1];
     };
 
     render() {
-        const { list, error, loading } = this.state;
-        return <ListPresenter list={list} error={error} loading={loading} isToday={this.isToday} />;
+        const { chatList, error, loading } = this.state;
+        const { isToday, readMessage } = this;
+        return <ListPresenter chatList={chatList} error={error} loading={loading} isToday={isToday} readMessage={readMessage} />;
     }
 }

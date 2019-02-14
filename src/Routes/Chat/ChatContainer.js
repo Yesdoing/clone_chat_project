@@ -12,8 +12,8 @@ export default useUI(
       this.state = {
         messages: [],
         message: "",
-        to_user: {},
-        from_user: {},
+        toUser: {},
+        fromUser: {},
         error: null,
         loading: true
       };
@@ -47,14 +47,14 @@ export default useUI(
       }
 
       try {
-        const data = richWebApi.chat(parsedId);
+        const data = richWebApi.chatDetail(parsedId);
 
         let updatedMessages = messageDividerOfDate([...data.messages]);
 
         this.setState({
           messages: updatedMessages,
-          to_user: data.to_user,
-          from_user: data.from_user
+          toUser: data.to_user,
+          fromUser: data.from_user
         });
         this.props.setChatHeaderUsername(data.from_user.username);
       } catch (error) {
@@ -92,9 +92,16 @@ export default useUI(
     };
 
     sendMessage = async () => {
+      const {
+        match: {
+          params: { id }
+        }
+      } = this.props;
+      
+      const parsedId = parseInt(id);
       const { message, messages } = this.state;
       let updateMessages = null;
-      const currentDate = moment().format("YYYY MMM DD,ddd,hh:mm");
+      const currentDate = moment().format("YYYY MMM DD,ddd,hh:mm:ss");
       try {
         const messageObject = {
           username: "yesdoing",
@@ -118,7 +125,7 @@ export default useUI(
             messageObject
           ];
         }
-        richWebApi.talk(messageObject);
+        richWebApi.addMessage(parsedId, messageObject);
       } catch (error) {
         this.setState({
           error: "Sorry, Something unexpected error occurred."
@@ -151,8 +158,8 @@ export default useUI(
         message,
         error,
         loading,
-        to_user,
-        from_user
+        toUser,
+        fromUser
       } = this.state;
       const { handleSubmit, handleChangeInput, setMessageContainerRef } = this;
 
@@ -164,8 +171,8 @@ export default useUI(
           loading={loading}
           handleSubmit={handleSubmit}
           handleChangeInput={handleChangeInput}
-          toUser={to_user}
-          fromUser={from_user}
+          toUser={toUser}
+          fromUser={fromUser}
           loggedInUser={this.props.loggedInUser}
           setMessageContainerRef={setMessageContainerRef}
         />

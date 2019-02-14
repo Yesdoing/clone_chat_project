@@ -56,6 +56,22 @@ const Username = styled.h3`
   margin-bottom: 10px;
 `;
 
+const UnreadNumber = styled.div`
+    position: absolute;
+    right: 20px;
+    top: 45px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    font-size: 12px;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 const RecentMessage = styled.span`
   color: #96959a;
 `;
@@ -65,26 +81,29 @@ const Link = styled(ATag)`
 
 const ChatItem = ({
   id,
-  user_profile_image,
+  userProfileImage,
   username,
-  recent_message,
-  message_time
+  recentMessage,
+  messageTime,
+  unReadNumber,
+  readMessage
 }) => (
-  <Link to={`/chat/${id}`}>
+  <Link to={`/chat/${id}`} onClick={()=>{readMessage(id)}}>
     <Container>
       <ImageContainer>
-        <Image bgImg={user_profile_image} />
+        <Image bgImg={userProfileImage} />
       </ImageContainer>
       <MessageContainer>
         <MessageBox>
           <Username>{username}</Username>
           <RecentMessage>
-            {recent_message.length > 36
-              ? `${recent_message.substring(0, 36)}..`
-              : recent_message}
+            {recentMessage.length > 36
+              ? `${recentMessage.substring(0, 36)}..`
+              : recentMessage}
           </RecentMessage>
         </MessageBox>
-        <MessageTime>{message_time}</MessageTime>
+          { unReadNumber === 0 ? null : <UnreadNumber>{unReadNumber}</UnreadNumber>}
+        <MessageTime>{messageTime}</MessageTime>
       </MessageContainer>
     </Container>
   </Link>
@@ -93,9 +112,11 @@ const ChatItem = ({
 ChatItem.propTypes = {
   id: PropTypes.number.isRequired,
   username: PropTypes.string.isRequired,
-  user_profile_image: PropTypes.string,
-  recent_message: PropTypes.string,
-  message_time: PropTypes.string
+  userProfileImage: PropTypes.string,
+  recentMessage: PropTypes.string,
+  messageTime: PropTypes.string,
+  unReadNumber: PropTypes.number,
+  readMessage: PropTypes.func.isRequired
 };
 
 export default ChatItem;

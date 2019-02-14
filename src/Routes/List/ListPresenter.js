@@ -16,7 +16,9 @@ const Button = styled.div`
     top: 85px;
     width: 100%;
     height: 85px;
-    background-color: #8C8EFB;
+    background-color: #9087FB;
+    background-image: linear-gradient(to right, #9087FB, #75A8FB);
+    
     color: white;
     display:flex;
     justify-content: center;
@@ -29,15 +31,17 @@ const Button = styled.div`
 
 
 
-const ListPresenter = ({ list, error, loading, isToday }) => {
-  const chatList = list.map((chat, index) => (
+const ListPresenter = ({ chatList, error, loading, isToday, readMessage}) => {
+  const chatItems = chatList.map((chat, index) => (
     <ChatItem
       key={index}
-      id={index}
+      id={chat.id}
       username={chat.username}
-      user_profile_image={chat.user_profile_image}
-      recent_message={chat.recent_message.content}
-      message_time={isToday(chat.recent_message.date)}
+      userProfileImage={chat.user_profile_image}
+      recentMessage={chat.recent_message.content}
+      messageTime={isToday(chat.recent_message.date)}
+      unReadNumber={chat.unread_number}
+      readMessage={readMessage}
     />
   ));
 
@@ -45,16 +49,14 @@ const ListPresenter = ({ list, error, loading, isToday }) => {
     <Loader />
   ) : (
     <Container>
-      <Button>
-        + New message
-    </Button>
-      {list && list.length > 0 && (
+      <Button>+ New message</Button>
+      {chatList && chatList.length > 0 && (
         <ChatList>
-          {chatList}
+          {chatItems}
         </ChatList>
       )}
       {error && <Error color="#e74c3c" text={error} />}
-      {list && list.length === 0 && (
+      {chatList && chatList.length === 0 && (
         <Error color="gray" text="대화방이 없습니다." />
       )}
     </Container>
@@ -62,10 +64,11 @@ const ListPresenter = ({ list, error, loading, isToday }) => {
 };
 
 ListPresenter.propTypes = {
-  list: PropTypes.array,
+  chatList: PropTypes.array,
   error: PropTypes.string,
   isToday: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  readMessage: PropTypes.func.isRequired
 };
 
 export default ListPresenter;

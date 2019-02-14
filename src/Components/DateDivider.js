@@ -7,9 +7,7 @@ const Container = styled.div`
   text-align: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   line-height: 0.1em;
-
   margin-bottom: 50px;
-  
 `;
 
 const Date = styled.span`

@@ -35,13 +35,12 @@ const Image = styled.div`
 const MessageContainer = styled.div``;
 
 const MessageTime = styled.p`
-    position: absolute;
-    color: #C4C5C5;
-    left: ${props => (props.isLogginedUser ? "-37px" : "auto")};
-    right: ${props => (props.isLogginedUser ? "auto" : "-37px")};
-    font-size: 13px;
+  position: absolute;
+  color: #c4c5c5;
+  left: ${props => (props.isLogginedUser ? "-37px" : "auto")};
+  right: ${props => (props.isLogginedUser ? "auto" : "-37px")};
+  font-size: 13px;
 `;
-
 
 const MessageBox = styled.p`
   color: #89898e;
@@ -50,14 +49,20 @@ const MessageBox = styled.p`
   word-wrap: break-word;
 `;
 
-const Message = ({ id, profileImageUrl, message, isLogginedUser, messageTime }) => (
+const Message = ({
+  id,
+  profileImageUrl,
+  message,
+  isLogginedUser,
+  messageTime
+}) => (
   <Container isLogginedUser={isLogginedUser}>
     <ImageContainer isLogginedUser={isLogginedUser}>
       <Image bgUrl={profileImageUrl} />
     </ImageContainer>
     <MessageContainer>
       <MessageBox>{message}</MessageBox>
-      <MessageTime isLogginedUser={isLogginedUser}>{messageTime.split(",")[2]}</MessageTime>
+      <MessageTime isLogginedUser={isLogginedUser}>{messageTime}</MessageTime>
     </MessageContainer>
   </Container>
 );
